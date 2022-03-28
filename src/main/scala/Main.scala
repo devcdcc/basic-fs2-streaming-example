@@ -4,7 +4,7 @@ import cats.effect.{IO, IOApp}
 import fs2.{Stream, text}
 import fs2.io.file.{Files, Path}
 
-object FS2Example extends IOApp.Simple {
+object Main extends IOApp.Simple {
   val defaultSensorProcessor: SensorDefaultProcessor[IO] = new SensorDefaultProcessor[IO]
   val ioSensorProcessor: SensorIOProcessor = new SensorIOProcessor
 
