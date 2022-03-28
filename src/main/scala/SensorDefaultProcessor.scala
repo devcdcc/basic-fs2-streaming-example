@@ -5,14 +5,14 @@ import cats.effect.IO
 import fs2.io.file.{Files, Path}
 
 
-class SensorDefaultProcessor[F[K]] extends InputFormatter[NonNumericHumidityEvent] with DataReducer[F] with OutputFormatter[BasicAggregatedSensorData] {
+class SensorDefaultProcessor[F[K]] extends InputFormatter[HumiditySensorEvent] with DataReducer[F] with OutputFormatter[BasicAggregatedSensorData] {
 
-  def decode(line: String): NonNumericHumidityEvent =
+  def decode(line: String): HumiditySensorEvent =
     Option(line).map(_.split(","))
-      .map(row => NonNumericHumidityEvent(row(0), row(1).toIntOption))
+      .map(row => HumiditySensorEvent(row(0), row(1).toIntOption))
       .get
 
-  def reduceMetrics(acc: Map[String, BasicAggregatedSensorData], sensor: NonNumericHumidityEvent): Map[String,BasicAggregatedSensorData] = {
+  def reduceMetrics(acc: Map[String, BasicAggregatedSensorData], sensor: HumiditySensorEvent): Map[String,BasicAggregatedSensorData] = {
     val previousStats = acc.get(sensor.sensor).map(currentStats => {
       currentStats.copy(
         count = currentStats.count + 1,

@@ -13,17 +13,17 @@ class DataReducerSpec extends AnyWordSpec with must.Matchers {
       "return a valid list with a map of metrics" in {
         // given
         val input = Stream(
-          NonNumericHumidityEvent("s1", Some(1)),
-          NonNumericHumidityEvent("s2", Some(2)),
-          NonNumericHumidityEvent("s3", None),
-          NonNumericHumidityEvent("s4", Some(3)),
-          NonNumericHumidityEvent("s3", None),
-          NonNumericHumidityEvent("s4", None),
-          NonNumericHumidityEvent("s1", Some(4)),
-          NonNumericHumidityEvent("s2", Some(5)),
-          NonNumericHumidityEvent("s1", Some(6)),
-          NonNumericHumidityEvent("s3", None),
-          NonNumericHumidityEvent("s1", Some(7))
+          HumiditySensorEvent("s1", Some(1)),
+          HumiditySensorEvent("s2", Some(2)),
+          HumiditySensorEvent("s3", None),
+          HumiditySensorEvent("s4", Some(3)),
+          HumiditySensorEvent("s3", None),
+          HumiditySensorEvent("s4", None),
+          HumiditySensorEvent("s1", Some(4)),
+          HumiditySensorEvent("s2", Some(5)),
+          HumiditySensorEvent("s1", Some(6)),
+          HumiditySensorEvent("s3", None),
+          HumiditySensorEvent("s1", Some(7))
         )
         val expected = List(Map(
           ("s1", BasicAggregatedSensorData("s1", 4, Option(18), Option(1), Option(7))),
